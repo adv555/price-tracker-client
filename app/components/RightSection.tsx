@@ -6,8 +6,8 @@ type RightSectionProps = {
 
 const RightSection = ({ children }: RightSectionProps) => {
   return (
-    <div className="w-full min-h-[calc(100vh-9rem)] text-center md:w-3/4 border-2 border-indigo-600">
-      Right block
+    <div className="w-full m-auto md:w-3/4 border-2 border-indigo-600 p-5">
+      {children}
     </div>
   );
 };

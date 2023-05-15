@@ -6,8 +6,8 @@ type LeftSectionProps = {
 
 const LeftSection = ({ children }: LeftSectionProps) => {
   return (
-    <div className="text-center min-h-[calc(100vh-9rem)] border-2 border-indigo-600 w-full md:w-1/4">
-      Left Sidebar
+    <div className="hidden md:block text-center h-full border-2 border-indigo-600 w-full md:w-1/4">
+      {children}
     </div>
   );
 };
