@@ -27,7 +27,7 @@ const SearchPage = () => {
     return null;
   }
 
-  console.log("Here is the data", data);
+  // console.log("Here is the data", data);
 
   return (
     <div className="flex flex-col items-center  min-h-screen py-2">
