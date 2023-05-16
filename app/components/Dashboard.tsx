@@ -4,9 +4,8 @@ import { useState } from "react";
 import { MobileFilterDialog } from "../components/filter/MobileFilterDialog";
 import Filters from "./filter/Filters";
 import SortTabs from "./filter/SortTabs";
-import PropertyCard, { ItemProps } from "./PropertyCard";
 
-export default function Dashboard({ items }: { items: ItemProps[] }) {
+export default function Dashboard({ children }: { children: React.ReactNode }) {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   return (
@@ -37,13 +36,7 @@ export default function Dashboard({ items }: { items: ItemProps[] }) {
               <Filters />
 
               {/* Product grid */}
-              <div className="lg:col-span-3">
-                <div className="grid items-center justify-center grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
-                  {items.map((item: ItemProps) => (
-                    <PropertyCard key={item.id} {...item} />
-                  ))}
-                </div>
-              </div>
+              {children}
             </div>
           </section>
         </main>

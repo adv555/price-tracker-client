@@ -1,3 +1,6 @@
+import Dashboard from "./components/Dashboard";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 import "./globals.css";
 import { Inter } from "next/font/google";
 
@@ -14,9 +17,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html className="scroll-smooth" lang="en">
       <body suppressHydrationWarning={true} className={inter.className}>
-        {children}
+        <Header />
+        <Dashboard>{children}</Dashboard>
+        <Footer />
       </body>
     </html>
   );

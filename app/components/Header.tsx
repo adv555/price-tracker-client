@@ -9,10 +9,7 @@ import ProfileButtons from "./buttons/ProfileButtons";
 import Search from "./Search";
 import CurrencyButton from "./buttons/CurrencyButton";
 import SearchBar from "./SearchBar";
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
+import classNames from "../utils/classNames";
 
 export default function Header() {
   const [open, setOpen] = useState(false);

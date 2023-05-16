@@ -2,10 +2,12 @@ import React from "react";
 import { filters, subCategories } from "@/app/data/filters";
 import { Disclosure } from "@headlessui/react";
 import { MinusIcon, PlusIcon } from "@heroicons/react/20/solid";
+import ProgressBar from "./ProgressBar";
 
 const Filters = () => {
   return (
     <form className="hidden lg:block">
+      <ProgressBar percent={50} cash={500} />
       <h3 className="sr-only">Categories</h3>
       <ul
         role="list"

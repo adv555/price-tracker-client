@@ -7,7 +7,7 @@ const WishListButton = () => {
     console.log("WishListButton clicked");
     setIsWishListed(!isWishListed);
   };
-  console.log(isWishListed);
+
   return (
     <span className="absolute p-2 right-0 ">
       <span role="button" onClick={handleClick}>
