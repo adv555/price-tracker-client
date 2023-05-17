@@ -17,9 +17,14 @@ const fetchItems = async (url: string) => {
 const SearchPage = () => {
   const search = useSearchParams();
   const searchQuery = search ? search.get("q") : null;
+  const sorted = search ? search.get("sort") : null;
+  console.log("searchQuery", searchQuery, "sorted", sorted);
+
   const encodedSearchQuery = encodeURI(searchQuery || "");
+  const encodedSorted = encodeURI(sorted || "");
+
   const { data, isLoading, error } = useSWR(
-    `/api/search?q=${encodedSearchQuery}`,
+    `/api/search?q=${encodedSearchQuery}&sort=${encodedSorted}`,
     fetchItems
   );
 

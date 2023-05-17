@@ -10,32 +10,35 @@ export default function handler(
   }
 
   try {
-    const { q } = req.query;
+    const { q, sort = "newest" } = req.query;
 
     /**
      * TODO: Implement search / sort logic
      */
 
-    // if (sort === "price-asc") {
-    //   items.sort((a, b) => a.priceInCents - b.priceInCents);
-    // } else if (sort === "price-desc") {
-    //   items.sort((a, b) => b.priceInCents - a.priceInCents);
-    // } else if (sort === "rating-desc") {
-    //   items.sort((a, b) => b.rating - a.rating);
-    // } else if (sort === "newest") {
-    //   items.sort((a, b) => b.id - a.id);
-    // }
-
-    const searchItems = items.filter((item) => {
-      const query = req.query.q?.toString().toLowerCase();
-      return (
-        item.title.toLowerCase().includes(query as string) ||
-        item.description.toLowerCase().includes(query as string)
-      );
-    });
+    const searchItems = items
+      .filter((item) => {
+        const query = req.query.q?.toString().toLowerCase();
+        return (
+          item.title.toLowerCase().includes(query as string) ||
+          item.description.toLowerCase().includes(query as string)
+        );
+      })
+      .sort((a, b) => {
+        if (sort === "price-asc") {
+          return a.priceInCents - b.priceInCents;
+        } else if (sort === "price-desc") {
+          return b.priceInCents - a.priceInCents;
+        } else if (sort === "rating-desc") {
+          return b.rating - a.rating;
+        } else if (sort === "newest") {
+          return b.id - a.id;
+        }
+        return a.id - b.id;
+      });
 
     res.status(200).json({
-      message: `You searched for "${q}"`,
+      message: `You searched for "${q}" and sorted by "${sort}"`,
       items: searchItems as ItemProps[],
     });
   } catch (error) {
