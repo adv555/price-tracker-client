@@ -35,21 +35,25 @@ const SearchPage = () => {
   // console.log("Here is the data", data);
 
   return (
-    <div className="flex flex-col items-center  min-h-screen py-2">
-      <h2 className="text-2xl font-bold">Search Results:</h2>
+    // <div className="flex flex-col items-center  min-h-screen py-2">
+    //   <h2 className="text-2xl font-bold">Search Results:</h2>
 
-      <div className="flex flex-col items-center">
-        <p className="text-green-600">{data.message}</p>
-        <p className="text-green-600">Found {data.items.length} items</p>
-        {
-          <div className="lg:col-span-3">
-            <div className="grid items-center justify-center grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
-              {data.items.map((item: ItemProps) => (
-                <PropertyCard key={item.id} {...item} />
-              ))}
-            </div>
-          </div>
-        }
+    //   <div className="flex flex-col items-center">
+    //     <p className="text-green-600">{data.message}</p>
+    //     <p className="text-green-600">Found {data.items.length} items</p>
+
+    <div className="lg:col-span-3">
+      <div className="mb-5">
+        <h2 className="text-2xl font-bold text-center">Search Results:</h2>
+        <p className="text-green-600 text-center">{data.message}</p>
+        <p className="text-green-600 text-center">
+          Found {data.items.length} items
+        </p>
+      </div>
+      <div className="grid items-center justify-center grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+        {data.items.map((item: ItemProps) => (
+          <PropertyCard key={item.id} {...item} />
+        ))}
       </div>
     </div>
   );
