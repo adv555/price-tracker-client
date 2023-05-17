@@ -10,13 +10,32 @@ export default function handler(
   }
 
   try {
-    const { q: query } = req.query;
+    const { q:query } = req.query;
 
     /**
-     * TODO: Implement search logic
+     * TODO: Implement search / sort logic
      */
 
-    const searchItems = items.slice(0, 5); // Mock data
+    // if (sort === "price-asc") {
+    //   items.sort((a, b) => a.priceInCents - b.priceInCents);
+    // } else if (sort === "price-desc") {
+    //   items.sort((a, b) => b.priceInCents - a.priceInCents);
+    // } else if (sort === "rating-desc") {
+    //   items.sort((a, b) => b.rating - a.rating);
+    // } else if (sort === "newest") {
+    //   items.sort((a, b) => b.id - a.id);
+    // }
+
+
+
+   
+
+    const searchItems = items.filter((item) => {
+      return (
+        item.title.toLowerCase().includes(query as string) ||
+        item.description.toLowerCase().includes(query as string)
+      );
+    });
 
     res.status(200).json({
       message: `You searched for "${query}"`,

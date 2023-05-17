@@ -1,10 +1,61 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { filters, subCategories } from "@/app/data/filters";
 import { Disclosure } from "@headlessui/react";
 import { MinusIcon, PlusIcon } from "@heroicons/react/20/solid";
 import ProgressBar from "./ProgressBar";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+
+const PAGE_SIZE = 2;
+
+const prices = [
+  {
+    name: "$1 to $50",
+    value: "1-50",
+  },
+  {
+    name: "$51 to $200",
+    value: "51-200",
+  },
+  {
+    name: "$201 to $1000",
+    value: "201-1000",
+  },
+];
+
+const ratings = [1, 2, 3, 4, 5];
 
 const Filters = () => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams()!;
+
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams]
+  );
+
+  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value;
+    const queryString = createQueryString("category", value);
+
+    router.push(`${pathname}?${queryString}`);
+  };
+
+  // const {
+  //   query = "all",
+  //   category = "all",
+  //   brand = "all",
+  //   price = "all",
+  //   rating = "all",
+  //   sort = "featured",
+  //   page = 1,
+  // } = router.query;
+
   return (
     <form className="hidden lg:block">
       <ProgressBar percent={50} cash={500} />

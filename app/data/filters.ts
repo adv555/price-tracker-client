@@ -1,10 +1,11 @@
 const sortOptions = [
-  { name: "Most Popular", href: "#", current: true },
-  { name: "Best Rating", href: "#", current: false },
-  { name: "Newest", href: "#", current: false },
-  { name: "Price: Low to High", href: "#", current: false },
-  { name: "Price: High to Low", href: "#", current: false },
+  { name: "Most Popular", value: "all" },
+  { name: "Best Rating", value: "rating-desc" },
+  { name: "Newest", value: "newest" },
+  { name: "Price: Low to High", value: "price-asc" },
+  { name: "Price: High to Low", value: "price-desc" },
 ];
+
 const subCategories = [
   { name: "Totes", href: "#" },
   { name: "Backpacks", href: "#" },
@@ -50,4 +51,29 @@ const filters = [
   },
 ];
 
-export { sortOptions, subCategories, filters };
+const PAGE_SIZE = 2;
+
+const prices = [
+  {
+    name: "$1 - $50",
+    value: "1-50",
+    min: 1,
+    max: 50,
+  },
+  {
+    name: "$51 - $200",
+    value: "51-200",
+    min: 51,
+    max: 200,
+  },
+  {
+    name: "$201 - $500",
+    value: "100-150",
+    min: 201,
+    max: 500,
+  },
+];
+
+const ratings = [1, 2, 3, 4, 5];
+
+export { sortOptions, subCategories, filters, PAGE_SIZE, prices, ratings };
