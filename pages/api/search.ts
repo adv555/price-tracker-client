@@ -10,7 +10,7 @@ export default function handler(
   }
 
   try {
-    const { q:query } = req.query;
+    const { q } = req.query;
 
     /**
      * TODO: Implement search / sort logic
@@ -26,11 +26,8 @@ export default function handler(
     //   items.sort((a, b) => b.id - a.id);
     // }
 
-
-
-   
-
     const searchItems = items.filter((item) => {
+      const query = req.query.q?.toString().toLowerCase();
       return (
         item.title.toLowerCase().includes(query as string) ||
         item.description.toLowerCase().includes(query as string)
@@ -38,7 +35,7 @@ export default function handler(
     });
 
     res.status(200).json({
-      message: `You searched for "${query}"`,
+      message: `You searched for "${q}"`,
       items: searchItems as ItemProps[],
     });
   } catch (error) {
